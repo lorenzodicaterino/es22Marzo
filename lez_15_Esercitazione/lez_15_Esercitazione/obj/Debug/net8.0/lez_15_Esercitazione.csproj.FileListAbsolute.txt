@@ -134,3 +134,4 @@ C:\Users\utente\Desktop\esercitazioni\es22Marzo\lez_15_Esercitazione\lez_15_Eser
 C:\Users\utente\Desktop\esercitazioni\es22Marzo\lez_15_Esercitazione\lez_15_Esercitazione\obj\Debug\net8.0\lez_15_Esercitazione.pdb
 C:\Users\utente\Desktop\esercitazioni\es22Marzo\lez_15_Esercitazione\lez_15_Esercitazione\obj\Debug\net8.0\lez_15_Esercitazione.genruntimeconfig.cache
 C:\Users\utente\Desktop\esercitazioni\es22Marzo\lez_15_Esercitazione\lez_15_Esercitazione\obj\Debug\net8.0\ref\lez_15_Esercitazione.dll
+C:\Users\utente\Desktop\esercitazioni\es22Marzo\lez_15_Esercitazione\lez_15_Esercitazione\obj\Debug\net8.0\lez_15_Esercitazione.sourcelink.json

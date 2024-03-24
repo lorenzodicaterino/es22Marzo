@@ -25,6 +25,11 @@ namespace lez_15_Esercitazione
             return Istanza;
         }
 
+        private Menu()
+        {
+
+        }
+
         bool continua = true;
         public void Interfaccia()
         {
@@ -37,7 +42,7 @@ namespace lez_15_Esercitazione
                     Console.WriteLine("\n1. IMPORTA CSV\n2. INSERISCI\n3. LEGGI\n4. AGGIORNA\n5. ELIMINA\n6. ESPORTA CSV\n7. ESCI\n");
 
 
-                    Console.Write("Inserire quale menu aprire: ");
+                    Console.Write("INSERIRE NUMERO MENU' : ");
                     String sceltaIniziale = Console.ReadLine();
 
                     switch (sceltaIniziale)
@@ -45,6 +50,9 @@ namespace lez_15_Esercitazione
                         case "1":
                             Console.Write("\nHAI SCELTO IMPORTA CSV\n");
                             #region IMPORTACSV
+
+                            Console.WriteLine("QUANDO SCOPRO COME SE FA CHO METTO");
+
                             #endregion
                             break;
                         case "2":
@@ -94,7 +102,7 @@ namespace lez_15_Esercitazione
                             break;
 
                         default:
-                            Console.Write("\nNON HAI SCELTO UN CAZZO\n");
+                            Console.Write("\nINPUT NON VALIDO. RIPROVA.\n");
                             break;
                     }
                 }
@@ -158,6 +166,9 @@ namespace lez_15_Esercitazione
                                 }
                                 else if (sceltaPartecipanteInEventi.ToLower().Equals("y"))
                                 {
+                                    Console.WriteLine("AL MOMENTO QUESTI SONO I PARTECIPANTI INSERIBBILI : ");
+                                    Istanza.StampaPartecipanti();
+
                                     List<int> idPartecipantiInEventi = new List<int>();
                                     bool inserisciInEvento = true;
                                     while (inserisciInEvento)
@@ -246,6 +257,9 @@ namespace lez_15_Esercitazione
                                 }
                                 else if (sceltaEventiInPartecipanti.ToLower().Equals("y"))
                                 {
+                                    Console.WriteLine("AL MOMENTO QUESTI SONO GLI EVENTI INSERIBILI : ");
+                                    Istanza.StampaEventi();
+
                                     List<int> idEventiInPartecipanti = new List<int>();
                                     bool inserisciInPartecipante = true;
                                     while (inserisciInPartecipante)
@@ -254,7 +268,7 @@ namespace lez_15_Esercitazione
                                         int idDaAggiungere = Convert.ToInt32(Console.ReadLine());
                                         idEventiInPartecipanti.Add(idDaAggiungere);
 
-                                        Console.Write("VUOI INSERIRE ALTRI PARTECIPANTI? (y/n) :");
+                                        Console.Write("VUOI INSERIRE ALTRI EVENTI? (y/n) :");
                                         if (Console.ReadLine().ToLower().Equals("n"))
                                             inserisciInPartecipante = false;
                                     }
@@ -317,6 +331,11 @@ namespace lez_15_Esercitazione
                                         string fornitore = Console.ReadLine();
                                         Console.Write("INSERISCI TIPO RISORSA (cibo, bevanda, attrezzatura): ");
                                         string tipo = Console.ReadLine();
+
+                                        Console.WriteLine("QUESTI GLI EVENTI AL QUALE POTER ASSOCIARE LA RISORSA :  ");
+                                        Istanza.StampaEventi();
+
+
                                         Console.Write("INSERISCI ID EVENTO DI RIFERIMENTO: ");
                                         int eventorif = Convert.ToInt32(Console.ReadLine());
 
@@ -353,7 +372,7 @@ namespace lez_15_Esercitazione
                             break;
 
                         default:
-                            Console.Write("\nNON HAI SCELTO UN CAZZO\n");
+                            Console.Write("\nINPUT NON VALIDO. RIPROVA.\n");
                             break;
                     };
                 }
@@ -377,6 +396,7 @@ namespace lez_15_Esercitazione
                             #region STAMPA EVENTO
                             ICollection<Evento> eventi = new List<Evento>();
                             eventi = ctx.Eventos.Where(e => e.Deleted == null).ToList();
+                           
                             Console.Write("VUOI VISUALIZZARE UN SOLO ELEMENTO O TUTTI GLI ELEMENTI? (1/+): ");
                             string sceltaVisualizzaEvento = Console.ReadLine();
 
@@ -418,7 +438,7 @@ namespace lez_15_Esercitazione
                                 foreach (Evento e in eventi)
                                     Console.WriteLine(e.ToString());
                             }
-                            else
+                            else if(eventi.Count <=0 )
                             {
                                 Console.WriteLine("INPUT SBAGLIATO OPPURE LA TABELLA NON E' STATA ANCORA RIEMPITA");
                             }
@@ -441,7 +461,7 @@ namespace lez_15_Esercitazione
 
                                 while (continuaVisualizzaPartecipante)
                                 {
-                                    Console.Write("INSERISCI L'ID DELL'EVENTO DA VISUALIZZARE: ");
+                                    Console.Write("INSERISCI L'ID DEL PARTECIPANTE DA VISUALIZZARE: ");
                                     int inputVisualizzaPartecipant = Convert.ToInt32(Console.ReadLine());
                                     if (inputVisualizzaPartecipant != 0 && inputVisualizzaPartecipant > 0)
                                     {
@@ -549,14 +569,12 @@ namespace lez_15_Esercitazione
                             break;
 
                         default:
-                            Console.Write("\nNON HAI SCELTO UN CAZZO\n");
+                            Console.Write("\nINPUT NON VALIDO. RIPROVA.\n");
                             break;
                     };
                 }
             }
         }
-
-        //TODO
 
         public void Aggiorna()
         {
@@ -565,23 +583,25 @@ namespace lez_15_Esercitazione
 
             bool continuaAggiorna = true;
 
-            while (continuaAggiorna)
+            using (var ctx = new Esercitazione22MarzoContext())
             {
-                switch (sceltaAggiorna)
+                while (continuaAggiorna)
                 {
-                    case "evento":
-                        Console.Write("\nHAI SCELTO EVENTO\n");
-                        #region AGGIORNA EVENTO
-                        using (var ctx = new Esercitazione22MarzoContext())
-                        {
-                            ICollection<Evento> eventi = ctx.Eventos.Where(e => e.Deleted == null).ToList();
-
-                            if (eventi.Count > 0)
+                    switch (sceltaAggiorna)
+                    {
+                        case "evento":
+                            #region Aggiorna Evento
+                            bool continuaAggiornaEvento = true;
+                            while (continuaAggiornaEvento)
                             {
-                                bool continuaAggiornaEvento = true;
+                                ICollection<Evento> eventi = ctx.Eventos.Where(e => e.Deleted == null).ToList();
 
-                                while (continuaAggiornaEvento)
+                                if (eventi.Count > 0)
                                 {
+
+                                    Console.WriteLine("AL MOMENTO FANNO PARTE DELLA TABELLA EVENTO QUESTI ELEMENTI: ");
+                                    Istanza.StampaEventi();
+
                                     Console.Write("INSERISCI ID DELL'EVENTO DA AGGIONARE: ");
                                     int idDaAggiornareEvento = Convert.ToInt32(Console.ReadLine());
                                     Evento eventoAggiorna = ctx.Eventos.Single(e => e.EventoId == idDaAggiornareEvento);
@@ -589,19 +609,26 @@ namespace lez_15_Esercitazione
 
                                     Console.Write("INSERISCI NOME EVENTO AGGIORNATO: ");
                                     string nomeEvento = Console.ReadLine();
+                                    //if (nomeEvento is null)
+                                    //    nomeEvento = eventoAggiorna.NomeEvento;
                                     Console.Write("INSERISCI DESCRIZIONE EVENTO AGGIORNATO: ");
                                     string descrizioneEvento = Console.ReadLine();
+                                    //if (descrizioneEvento is null)
+                                    //    descrizioneEvento = eventoAggiorna.DescrizioneEvento;
                                     Console.Write("INSERISCI DATA EVENTO AGGIORNATA (dd/mm/yyyy): ");
                                     DateTime dataEvento = Convert.ToDateTime(Console.ReadLine());
                                     Console.Write("INSERISCI LUOGO EVENTO AGGIORNATO: ");
                                     string? luogoEvento = Console.ReadLine();
+                                    //if (luogoEvento is null)
+                                    //    luogoEvento = eventoAggiorna.LuogoEvento;
                                     Console.Write("INSERISCI CAPACITA' MASSIMA EVENTO AGGIORNATA: ");
                                     int capacitaMassima = Convert.ToInt32(Console.ReadLine());
+                                    //if (capacitaMassima == 0)
+                                    //    capacitaMassima = eventoAggiorna.CapacitaMassima;
 
                                     Console.Write("VUOI MODIFICARE I PARTECIPANTI ALL'EVENTO (y/n) : ");
                                     if (Console.ReadLine().ToLower().Equals("y"))
                                     {
-
                                         Console.WriteLine("ATTUALMENTE PARTECIPANO ALL'EVENTO QUESTE PERSONE: ");
                                         Evento partecipantiAllEvento = ctx.Eventos.Include(p => p.PartecipanteRifs).Single(e => e.EventoId == idDaAggiornareEvento);
                                         foreach (Partecipante p in partecipantiAllEvento.PartecipanteRifs)
@@ -609,9 +636,10 @@ namespace lez_15_Esercitazione
 
                                         List<int> idPartecipantiInEventi = new List<int>();
                                         bool inserisciInEvento = true;
+                                        Console.Write("LISTA PARTECIPANTI SVUOTATA.");
                                         while (inserisciInEvento)
                                         {
-                                            Console.Write("INSERISCI ID PARTECIPANTE DA AGGIORNARE: ");
+                                            Console.Write("INSERISCI ID DEI PARTECIPANTI DA AGGIUNGERE: ");
                                             int idDaAggiungere = Convert.ToInt32(Console.ReadLine());
                                             idPartecipantiInEventi.Add(idDaAggiungere);
 
@@ -647,141 +675,389 @@ namespace lez_15_Esercitazione
 
                                         ctx.SaveChanges();
                                     }
+
+                                    Console.Write("VUOI MODIFICARE ALTRI EVENTI? (y/n) : ");
+                                    if (Console.ReadLine().ToLower().Equals("n"))
+                                    {
+                                        continuaAggiornaEvento = false;
+                                        continuaAggiorna = false;
+                                    }
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("HAI BISOGNO DI POPOLARE LA TABELLA PRIMA DI AGGIORNARE DEGLI OGGETTI");
+                                    continuaAggiornaEvento = false;
+                                    continuaAggiorna = false;
+                                    break;
                                 }
                             }
-
-                            else
+                            #endregion
+                            break;
+                        case "partecipante":
+                            #region Aggiorna Partecipante
+                            bool continuaAggiornaPartecipante = true;
+                            while (continuaAggiornaPartecipante)
                             {
-                                Console.WriteLine("HAI BISOGNO DI POPOLARE LA TABELLA PRIMA DI AGGIORNARE DEGLI OGGETTI");
-                            }
-                        }
-                }
-            }
-
-                        #endregion
-                        break;
-
-                                case "partecipante":
-                            Console.Write("\nHAI SCELTO PARTECIPANTE\n");
-                            #region AGGIORNA PARTECIPANTE
-                            using (var ctx = new Esercitazione22MarzoContext())
-                            {
-                                ICollection<Partecipante> partecipanti = ctx.Partecipantes.Where(e => e.Deleted == null).ToList();
+                                ICollection<Partecipante> partecipanti = ctx.Partecipantes.Where(p => p.Deleted == null).ToList();
 
                                 if (partecipanti.Count > 0)
                                 {
-                                    bool continuaAggiornaPartecipante = true;
 
-                                    while (continuaAggiornaPartecipante)
+                                    Console.WriteLine("AL MOMENTO FANNO PARTE DELLA TABELLA PARTECIPANTI QUESTI ELEMENTI: ");
+                                    Istanza.StampaPartecipanti();
+
+                                    Console.Write("INSERISCI ID DEL PARTECIPANTE DA AGGIONARE: ");
+                                    int idDaAggiornarePartecipante = Convert.ToInt32(Console.ReadLine());
+                                    Partecipante partecipanteAggiorna = ctx.Partecipantes.Single(p => p.PartecipanteId == idDaAggiornarePartecipante);
+                                    Console.WriteLine("L'ELEMENTO ATTUALMENTE CONTIENE : " + partecipanteAggiorna.ToString());
+
+                                    Console.Write("INSERISCI NOMINATIVO PARTECIPANTE AGGIORNATO: ");
+                                    string nomePartecipante = Console.ReadLine();
+                                    Console.Write("INSERISCI TELEFONO PARTECIPANTE AGGIORNATO: ");
+                                    string telefonoPartecipante = Console.ReadLine();
+                                    Console.Write("INSERISCI EMAIL PARTECIPANTE AGGIORNATO: ");
+                                    string? emailPartecipante = Console.ReadLine();
+
+                                    Console.Write("VUOI MODIFICARE GLI EVENTI A CUI PARTECIPA? (y/n) : ");
+                                    if (Console.ReadLine().ToLower().Equals("y"))
                                     {
-                                        Console.Write("INSERISCI ID DEL PARTECIPANTE DA AGGIONARE: ");
+                                        Console.WriteLine("ATTUALMENTE PARTECIPA A QUESTI EVENTI: ");
+                                        Partecipante eventiDelPartecipante = ctx.Partecipantes.Include(e => e.EventoRifs).Single(p => p.PartecipanteId == idDaAggiornarePartecipante);
+                                        foreach (Evento e in eventiDelPartecipante.EventoRifs)
+                                            Console.WriteLine(e.ToString());
 
-                                        Partecipante partecipanteAggiorna = ctx.Partecipantes.Single(p => p.PartecipanteId == Convert.ToInt32(Console.ReadLine()));
-                                        Console.WriteLine("L'ELEMENTO ATTUALMENTE CONTIENE : " + partecipanteAggiorna.ToString());
+                                        List<int> idEventiDelPartecipante = new List<int>();
+                                        bool inserisciInPartecipante = true;
 
-                                        Console.Write("INSERISCI NOMINATIVO PARTECIPANTE AGGIORNATO: ");
-                                        partecipanteAggiorna.Nominativo = Console.ReadLine();
-                                        Console.Write("INSERISCI TELEFONO PARTECIPANTE AGGIORNATO: ");
-                                        partecipanteAggiorna.Telefono = Console.ReadLine();
-                                        Console.Write("INSERISCI EMAIL PARTECIPANTE AGGIORNATO: ");
-                                        partecipanteAggiorna.Email = Console.ReadLine();
+                                        Console.Write("LISTA EVENTI SVUOTATA.");
+                                        while (inserisciInPartecipante)
+                                        {
+                                            Console.Write("INSERISCI ID DEGLI EVENTI DA AGGIUNGERE: ");
+                                            int idDaAggiungere = Convert.ToInt32(Console.ReadLine());
+                                            idEventiDelPartecipante.Add(idDaAggiungere);
+
+                                            Console.Write("VUOI INSERIRE ALTRI EVENTI? (y/n) :");
+                                            if (Console.ReadLine().ToLower().Equals("n"))
+                                                inserisciInPartecipante = false;
+
+                                            ICollection<Evento> eventi = new List<Evento>();
+
+                                            foreach (int i in idEventiDelPartecipante)
+                                                eventi.Add(ctx.Eventos.First(e => e.EventoId == i));
+
+
+                                            partecipanteAggiorna.Nominativo = nomePartecipante;
+                                            partecipanteAggiorna.Telefono = telefonoPartecipante;
+                                            partecipanteAggiorna.Email = emailPartecipante;
+                                            partecipanteAggiorna.EventoRifs = eventi;
+
+                                            ctx.SaveChanges();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        partecipanteAggiorna.Nominativo = nomePartecipante;
+                                        partecipanteAggiorna.Telefono = telefonoPartecipante;
+                                        partecipanteAggiorna.Email = emailPartecipante;
 
                                         ctx.SaveChanges();
-
-                                        Console.Write("VUOI AGGIORNARE UN ALTRO PARTECIPANTE (y/n) : ");
-                                        if (Console.ReadLine().ToLower().Equals("n"))
-                                            continuaAggiornaPartecipante = false;
                                     }
+
+                                    Console.Write("VUOI MODIFICARE ALTRI PARTECIPANTI? (y/n) : ");
+                                    if (Console.ReadLine().ToLower().Equals("n"))
+                                    {
+                                        continuaAggiornaPartecipante = false;
+                                        continuaAggiorna = false;
+                                    }
+
                                 }
                                 else
                                 {
                                     Console.WriteLine("HAI BISOGNO DI POPOLARE LA TABELLA PRIMA DI AGGIORNARE DEGLI OGGETTI");
+                                    continuaAggiornaPartecipante = false;
+                                    continuaAggiorna = false;
+                                    break;
                                 }
                             }
                             #endregion
                             break;
-
                         case "risorsa":
-
-                            Console.Write("\nHAI SCELTO RISORSA\n");
-                            #region AGGIORNA RISORSA
-                            using (var ctx = new Esercitazione22MarzoContext())
+                            bool continuaAggiornaRisorsa = true;
+                            while (continuaAggiornaRisorsa)
                             {
-                                ICollection<Risorse> risorse = ctx.Risorses.Where(e => e.Deleted == null).ToList();
+                                ICollection<Risorse> risorse = ctx.Risorses.Where(r => r.Deleted == null).ToList();
 
                                 if (risorse.Count > 0)
                                 {
-                                    bool continuaAggiornaRisorsa = true;
 
-                                    while (continuaAggiornaRisorsa)
+                                    Console.WriteLine("AL MOMENTO FANNO PARTE DELLA TABELLA RISORSE QUESTI ELEMENTI: ");
+                                    Istanza.StampaRisorse();
+
+                                    Console.Write("INSERISCI ID DELLA RISORSA DA AGGIONARE: ");
+                                    int idDaAggiornareRisorsa = Convert.ToInt32(Console.ReadLine());
+                                    Risorse risorsaDaAggiornare = ctx.Risorses.Single(r => r.RisorseId == idDaAggiornareRisorsa);
+                                    Console.WriteLine("L'ELEMENTO ATTUALMENTE CONTIENE : " + risorsaDaAggiornare.ToString());
+
+                                    Console.Write("INSERISCI QUANTITA' RISORSA AGGIORNATA: ");
+                                    risorsaDaAggiornare.Quantita = Convert.ToInt32(Console.ReadLine());
+                                    Console.Write("INSERISCI COSTO RISORSA AGGIORNATA: ");
+                                    risorsaDaAggiornare.Costo = Convert.ToDecimal(Console.ReadLine());
+                                    Console.Write("INSERISCI FORNITORE RISORSA AGGIORNATA: ");
+                                    risorsaDaAggiornare.Fornitore = Console.ReadLine();
+                                    Console.Write("INSERISCI TIPO RISORSA AGGIORNATA: ");
+                                    risorsaDaAggiornare.Tipo = Console.ReadLine();
+                                    Console.Write("INSERISCI EVENTO DI RIFERIMENTO DELLA RISORSA AGGIORNATA: ");
+                                    risorsaDaAggiornare.EventoRif = Convert.ToInt32(Console.ReadLine());
+
+                                    ctx.SaveChanges();
+
+
+                                    Console.Write("VUOI MODIFICARE ALTRE RISORSE ? (y/n) : ");
+                                    if (Console.ReadLine().ToLower().Equals("n"))
                                     {
-                                        Console.Write("INSERISCI ID DELLA RISORSA DA AGGIONARE: ");
-
-                                        Risorse risorsaAggiorna = ctx.Risorses.Single(r => r.RisorseId == Convert.ToInt32(Console.ReadLine()));
-                                        Console.WriteLine("L'ELEMENTO ATTUALMENTE CONTIENE : " + risorsaAggiorna.ToString());
-
-                                        Console.Write("INSERISCI QUANTITA RISORSA AGGIORNATO: ");
-                                        risorsaAggiorna.Quantita = Convert.ToInt32(Console.ReadLine());
-                                        Console.Write("INSERISCI COSTO RISORSA AGGIORNATO: ");
-                                        risorsaAggiorna.Costo = Convert.ToDecimal(Console.ReadLine());
-                                        Console.Write("INSERISCI FORNITORE RISORSA AGGIORNATO: ");
-                                        risorsaAggiorna.Fornitore = Console.ReadLine();
-                                        Console.Write("INSERISCI TIPO RISORSA AGGIORNATO: ");
-                                        risorsaAggiorna.Tipo = Console.ReadLine();
-                                        Console.Write("INSERISCI EVENTO DI RIFERIMENTO DELLA RISORSA AGGIORNATO: ");
-                                        risorsaAggiorna.EventoRif = Convert.ToInt32(Console.ReadLine());
-
-                                        ctx.SaveChanges();
-
-                                        Console.Write("VUOI AGGIORNARE UN ALTRA RISORSA? (y/n) : ");
-                                        if (Console.ReadLine().ToLower().Equals("n"))
-                                            continuaAggiornaRisorsa = false;
+                                        continuaAggiornaRisorsa = false;
+                                        continuaAggiorna = false;
                                     }
                                 }
                                 else
                                 {
                                     Console.WriteLine("HAI BISOGNO DI POPOLARE LA TABELLA PRIMA DI AGGIORNARE DEGLI OGGETTI");
+                                    continuaAggiornaRisorsa = false;
+                                    continuaAggiorna = false;
+                                    break;
                                 }
                             }
-
-                            #endregion
                             break;
 
                         case "indietro":
+
+
+                            break;
+                        default:
+                            Console.Write("\nINPUT NON VALIDO. RIPROVA.\n");
                             continuaAggiorna = false;
                             break;
-
-                        default:
-                            Console.Write("\nNON HAI SCELTO UN CAZZO\n");
-                            break;
-            
+                    }
+                }
+            }
         }
+
+        public void Elimina()
+        {
+            using (var ctx = new Esercitazione22MarzoContext())
+            {
+                bool continuaElimina = true;
+                Console.Write("DA QUALE TABELLA SI DESIDERA ELIMINARE? (evento/partecipante/risorsa/indietro) : ");
+                string sceltaElimina = Console.ReadLine();
+
+                while (continuaElimina)
+                {
+                    switch (sceltaElimina)
+                    {
+                        case "evento":
+                            #region Elimina Evento
+                            bool continuaAggiornaEvento = true;
+                            while (continuaAggiornaEvento)
+                            {
+                                Console.WriteLine("HAI SCELTO EVENTO");
+
+                                ICollection<Evento> eventi = new List<Evento>();
+                                eventi = ctx.Eventos.Where(e => e.Deleted == null).ToList();
+
+                                if (eventi.Count <= 0)
+                                {
+                                    Console.WriteLine("PRIMA DI POTER ELIMINARE UN CAMPO DEVI POPOLARE LA TABELLA. RIPROVA");
+                                    continuaAggiornaEvento = false;
+                                    continuaElimina = false;
+                                    return;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("AL MOMENTO LA TABELLA CONTIENE :");
+                                    Istanza.StampaEventi();
+
+                                    Console.Write("INSERISCI ID CAMPO DA ELIMINARE : ");
+                                    Evento eventoDaEliminare = ctx.Eventos.Single(e=>e.EventoId == Convert.ToInt32(Console.ReadLine()) && e.Deleted==null);
+                                    if (eventoDaEliminare is not null)
+                                    {
+                                        eventoDaEliminare.Deleted = DateTime.Now;
+                                        ctx.SaveChanges();
+                                    }
+                                    else
+                                        Console.WriteLine("ELEMENTO NON TROVATO");
+                                }
+
+                                Console.Write("VUOI ELIMINARE ALTRI EVENTI? (y/n) : ");
+                                if(Console.ReadLine().ToLower().Equals("n"))
+                                {
+                                    continuaAggiornaEvento = false;
+                                    continuaElimina = false;
+                                }
+                            }
+                            #endregion
+                            break;
+                        case "partecipante":
+                            bool continuaAggiornaPartecipante = true;
+                            #region Elimina Partecipante
+                            while (continuaAggiornaPartecipante)
+                            {
+                                Console.WriteLine("HAI SCELTO PARTECIPANTE");
+
+                                ICollection<Partecipante> partecipante = new List<Partecipante>();
+                                partecipante = ctx.Partecipantes.Where(p => p.Deleted == null).ToList();
+
+                                if (partecipante.Count <= 0)
+                                {
+                                    Console.WriteLine("PRIMA DI POTER ELIMINARE UN CAMPO DEVI POPOLARE LA TABELLA. RIPROVA");
+                                    continuaAggiornaPartecipante = false;
+                                    continuaElimina = false;
+                                    return;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("AL MOMENTO LA TABELLA CONTIENE :");
+                                    Istanza.StampaPartecipanti();
+
+                                    Console.Write("INSERISCI ID CAMPO DA ELIMINARE : ");
+                                    Partecipante partecipanteDaEliminare= ctx.Partecipantes.Single(p => p.PartecipanteId== Convert.ToInt32(Console.ReadLine()) && p.Deleted == null);
+                                    if (partecipanteDaEliminare is not null)
+                                    {
+                                        partecipanteDaEliminare.Deleted = DateTime.Now;
+                                        ctx.SaveChanges();
+                                    }
+                                    else
+                                        Console.WriteLine("ELEMENTO NON TROVATO");
+                                }
+
+                                Console.Write("VUOI ELIMINARE ALTRI PARTECIPANTI? (y/n) : ");
+                                if (Console.ReadLine().ToLower().Equals("n"))
+                                {
+                                    continuaAggiornaPartecipante = false;
+                                    continuaElimina = false;
+                                }
+                            }
+                            #endregion
+                            break;
+                        case "risorsa":
+                            #region Elimina Risorsa
+                            bool continuaAggiornaRisorsa = true;
+                            while (continuaAggiornaRisorsa)
+                            {
+                                Console.WriteLine("HAI SCELTO RISORSA");
+
+                                ICollection<Risorse> risorse= new List<Risorse>();
+                                risorse = ctx.Risorses.Where(r => r.Deleted == null).ToList();
+
+                                if (risorse.Count <= 0)
+                                {
+                                    Console.WriteLine("PRIMA DI POTER ELIMINARE UN CAMPO DEVI POPOLARE LA TABELLA. RIPROVA");
+                                    continuaAggiornaRisorsa = false;
+                                    continuaElimina = false;
+                                    return;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("AL MOMENTO LA TABELLA CONTIENE :");
+                                    Istanza.StampaRisorse();
+
+                                    Console.Write("INSERISCI ID CAMPO DA ELIMINARE : ");
+                                    Risorse risorsaDaEliminare= ctx.Risorses.Single(r => r.RisorseId== Convert.ToInt32(Console.ReadLine()) && r.Deleted == null);
+                                    if (risorsaDaEliminare is not null)
+                                    {
+                                        risorsaDaEliminare.Deleted = DateTime.Now;
+                                        ctx.SaveChanges();
+                                    }
+                                    else
+                                        Console.WriteLine("ELEMENTO NON TROVATO");
+                                }
+
+                                Console.Write("VUOI ELIMINARE ALTRE RISORSE? (y/n) : ");
+                                if (Console.ReadLine().ToLower().Equals("n"))
+                                {
+                                    continuaAggiornaRisorsa = false;
+                                    continuaElimina = false;
+                                }
+                            }
+                            #endregion
+                            break;
+
+
+                        case "indietro":
+                            continuaElimina = false;
+                            return;
+                            break;
+                        default:
+                            Console.WriteLine("\nINPUT NON VALIDO. RIPROVA.\n");
+                            continuaElimina = false;
+                            return;
+                            break;
+
+                    }
+                }
+            }
+        }
+
+        public void EsportaCSV()
+        {
+            Console.WriteLine("UN FILE DI NOME EVENTI  DI FORMATO TXT VERRA' CREATO SUL DESKTOP \n CONTERRA' AL SUO INTERNO TUTTI I RECORD CONTENUTI NELLE TABELLE. ");
+
+            using (var ctx = new Esercitazione22MarzoContext())
+            {
+                ICollection<Evento> eventiCSV = ctx.Eventos.Where(e => e.Deleted != null).ToList();
+                ICollection<Partecipante> partecipanteCSV = ctx.Partecipantes.Where(p => p.Deleted != null).ToList();
+                ICollection<Risorse> risorseCSV = ctx.Risorses.Where(r => r.Deleted != null).ToList();
+                string? appoggio = "";
+
+                foreach (Evento v in eventiCSV)
+                    appoggio += v.EsportaCSV();
+                appoggio += "\n";
+                foreach (Partecipante p in partecipanteCSV)
+                    appoggio += p.EsportaCSV();
+                appoggio += "\n";
+                foreach (Risorse r in risorseCSV)
+                    appoggio += r.EsportaCSV();
+                appoggio += "\n";
+
+                using (StreamWriter sw = new StreamWriter("C:\\Users\\utente\\Desktop\\eventi.txt"))
+                {
+                    sw.WriteLine(appoggio);
+                }
+            }
+        }
+
+        #region GET ALL
+        private void StampaEventi()
+        {
+            using (var ctx = new Esercitazione22MarzoContext())
+            {
+                ICollection<Evento> x = new List<Evento>();
+                x = ctx.Eventos.Where(e => e.Deleted == null).ToList();
+                foreach (Evento e in x)
+                    Console.WriteLine(e.ToString());
+            }
+        }
+
+        private void StampaPartecipanti()
+        {
+            using (var ctx = new Esercitazione22MarzoContext())
+            {
+                ICollection<Partecipante> x = new List<Partecipante>();
+                x = ctx.Partecipantes.Where(p => p.Deleted == null).ToList();
+                foreach (Partecipante p in x)
+                    Console.WriteLine(p.ToString());
+            }
+        }
+        private void StampaRisorse()
+        {
+            using (var ctx = new Esercitazione22MarzoContext())
+            {
+                ICollection<Risorse> x = new List<Risorse>();
+                x = ctx.Risorses.Where(r => r.Deleted == null).ToList();
+                foreach (Risorse r in x)
+                    Console.WriteLine(r.ToString());
+            }
+        }
+        #endregion
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-public void Elimina()
-{
-
-}
-
-public void EsportaCSV()
-{
-
-}
-
-    }
-
-
-

@@ -43,4 +43,8 @@ PRIMARY KEY (eventoRIF, partecipanteRIF)
 );
 ```
 
+23/03/2024
 Ho provato a svolgere tutti i puntie al momento gli unici che mi mancano da implementare sono il DELETE e l'importazione e l'esportazione dei file .CSV (oltre all'implementazione dell'UPDATE da terminare). 
+
+24/03/2024
+Sono riuscito a svolgere tutti i punti (apparte l'importazione tramite file .CSV) in maniera non esageratamente ottimizzata, però "if it works, don't touch it"

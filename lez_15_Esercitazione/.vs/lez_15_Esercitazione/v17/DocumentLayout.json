@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|c:\\users\\utente\\desktop\\esercitazioni\\es22marzo\\lez_15_esercitazione\\lez_15_esercitazione\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|solutionrelative:lez_15_esercitazione\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|c:\\users\\utente\\desktop\\esercitazioni\\es22marzo\\lez_15_esercitazione\\lez_15_esercitazione\\models\\risorse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|solutionrelative:lez_15_esercitazione\\models\\risorse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|c:\\users\\utente\\desktop\\esercitazioni\\es22marzo\\lez_15_esercitazione\\lez_15_esercitazione\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|solutionrelative:lez_15_esercitazione\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|c:\\users\\utente\\desktop\\esercitazioni\\es22marzo\\lez_15_esercitazione\\lez_15_esercitazione\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|solutionrelative:lez_15_esercitazione\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|c:\\users\\utente\\desktop\\esercitazioni\\es22marzo\\lez_15_esercitazione\\lez_15_esercitazione\\models\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|solutionrelative:lez_15_esercitazione\\models\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|c:\\users\\utente\\desktop\\esercitazioni\\es22marzo\\lez_15_esercitazione\\lez_15_esercitazione\\models\\risorse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|solutionrelative:lez_15_esercitazione\\models\\risorse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{593D67B1-DE64-4981-A23C-8238BE450D4E}|lez_15_Esercitazione\\lez_15_Esercitazione.csproj|c:\\users\\utente\\desktop\\esercitazioni\\es22marzo\\lez_15_esercitazione\\lez_15_esercitazione\\models\\partecipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,24 +30,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 225,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Menu.cs",
               "DocumentMoniker": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\lez_15_Esercitazione\\Menu.cs",
               "RelativeDocumentMoniker": "lez_15_Esercitazione\\Menu.cs",
               "ToolTip": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\lez_15_Esercitazione\\Menu.cs",
               "RelativeToolTip": "lez_15_Esercitazione\\Menu.cs",
-              "ViewState": "AQIAAH0CAAAAAAAAAAAcwL0CAAAPAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAPUBAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-22T21:01:24.302Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Risorse.cs",
               "DocumentMoniker": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\lez_15_Esercitazione\\Models\\Risorse.cs",
               "RelativeDocumentMoniker": "lez_15_Esercitazione\\Models\\Risorse.cs",
@@ -55,8 +67,7 @@
               "RelativeToolTip": "lez_15_Esercitazione\\Models\\Risorse.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAowBgAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-22T14:34:41.001Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-22T14:34:41.001Z"
             },
             {
               "$type": "Document",
@@ -72,25 +83,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Evento.cs",
               "DocumentMoniker": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\lez_15_Esercitazione\\Models\\Evento.cs",
               "RelativeDocumentMoniker": "lez_15_Esercitazione\\Models\\Evento.cs",
               "ToolTip": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\lez_15_Esercitazione\\Models\\Evento.cs",
               "RelativeToolTip": "lez_15_Esercitazione\\Models\\Evento.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAA5wBwAAAAcAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-22T14:34:37.499Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\lez_15_Esercitazione\\Program.cs",
               "RelativeDocumentMoniker": "lez_15_Esercitazione\\Program.cs",
               "ToolTip": "C:\\Users\\utente\\Desktop\\esercitazioni\\es22Marzo\\lez_15_Esercitazione\\lez_15_Esercitazione\\Program.cs",
               "RelativeToolTip": "lez_15_Esercitazione\\Program.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAgwEkAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-22T14:31:59.037Z",
               "EditorCaption": ""
